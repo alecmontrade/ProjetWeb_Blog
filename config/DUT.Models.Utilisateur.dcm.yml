@@ -1,6 +1,12 @@
-DUT\Models\Article:
+DUT\Models\Utilisateur:
   type: entity
-  table: Article
+  
+  oneToMany:
+    commentaires:
+      targetEntity: Commentaire
+      mappedBy: utilisateur
+
+  table: Utilisateur
   
   id:
     id:
@@ -9,17 +15,17 @@ DUT\Models\Article:
         strategy: auto
 
   fields:
-    id_redacteur:
-      type: integer
+    mail:
+      type: string
       column: id_redacteur
       nullable: false
     
-    titre:
+    pseudo:
       type: string
       column: titre
       nullable: false
         
-    contenu:
+    mdp:
       type: string
       column: contenu
       nullable: false

@@ -1,5 +1,11 @@
 DUT\Models\Article:
   type: entity
+  
+  oneToMany:
+    commentaires:
+      targetEntity: Commentaire
+      mappedBy: article
+
   table: Article
   
   id:
@@ -20,6 +26,6 @@ DUT\Models\Article:
       nullable: false
         
     contenu:
-      type: text
+      type: string
       column: contenu
       nullable: false

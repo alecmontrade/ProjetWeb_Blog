@@ -1,5 +1,22 @@
 DUT\Models\Commentaire:
   type: entity
+
+  manyToOne:
+   article:
+    targetEntity: Article
+    inversedBy: commentaires
+     joinColumn:
+       name: id_article
+       referencedColumnName: id
+
+  manyToOne:
+   utilisateur:
+    targetEntity: Utilisateur
+    inversedBy: commentaires
+     joinColumn:
+       name: id_utilisateur
+       referencedColumnName: id
+
   table: Commentaire
   
   id:
@@ -9,17 +26,8 @@ DUT\Models\Commentaire:
         strategy: auto
 
   fields:
-    id_article:
-      type: integer
-      column: id_article
-      nullable: false
-    
-    id_utilisateur:
-      type: string
-      column: id_utilisateur
-      nullable: false
         
     contenu:
-      type: text
+      type: string
       column: contenu
       nullable: false
