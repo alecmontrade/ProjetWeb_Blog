@@ -36,8 +36,11 @@ $app['em'] = function ($app) {
 /**
  * ROUTES
  */
-$app->get('/', 'DUT\\Controllers\\ArticleController::listAction')
+$app->get('/', 'DUT\\Controllers\\ArticleController::listArticles')
     ->bind('home');
+
+$app->get('/article/{index}', 'DUT\\Controllers\\ItemsController::AfficheArticle');
+
 
 //web/index.php
 $app->get('/example', function() use ($app) {

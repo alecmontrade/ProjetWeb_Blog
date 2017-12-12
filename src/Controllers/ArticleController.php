@@ -17,7 +17,7 @@ class ArticleController {
         
     }
 
-    public function listAction(Application $app) {
+    public function listArticles(Application $app) {
         $entityManager = $app['em'];
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
@@ -27,6 +27,19 @@ class ArticleController {
         return new Response($html);
     }
 
+    public function AfficheArticle($index, Application $app) {
+        $entityManager = $app['em'];
+        $twig=$app['twig'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $article=$repository->find('DUT\\Models\\Article', $index);
+        $html=$twig->render('Article.twig', ['article' => $article]);
+        
+        return new Response($html);
+    }
+    
+    
+    
+    
     public function createAction(Request $request, Application $app) {
         $entityManager = $app['em'];
         $repository = $entityManager->getRepository('DUT\\Models\\Item');
