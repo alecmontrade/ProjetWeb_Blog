@@ -5,11 +5,11 @@
     <h2>Home</h2>
     <a href="create">Ajouter</a>
     
-    {% block itemlist %}
+    {% block articlelist %}
         <ul>
-            {% for item in items %}            
+            {% for article in articles %}            
 
-                <li>{{ item.getTitle() }} {% if item.getChecked()==0 %} <input type="checkbox" name="check[]" value="check" disabled > {% else %}<input type="checkbox" name="check[]" value="check" disabled checked>{% endif %}   <a href="remove/{{ item.getId()}}">Suppr.</a>  <a href="check/{{item.getId}}"> Check </a></li>        
+                <li>{{ article.getTitre() }}    </li>        
 
 
 
@@ -19,5 +19,5 @@
 
 
         </ul>
-    {% endblock itemlist %}
+    {% endblock articlelist %}
 {% endblock %}

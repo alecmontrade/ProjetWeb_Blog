@@ -15,7 +15,7 @@ DUT\Models\Article:
         strategy: auto
 
   fields:
-    id_redacteur:
+    auteur:
       type: integer
       column: id_redacteur
       nullable: false

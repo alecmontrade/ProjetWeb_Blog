@@ -5,25 +5,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 namespace DUT\Models;
+
 /**
- * Description of Item
+ * Description of Commentaire
  *
  * @author p1606602
  */
-class Article {
-   
+class Commentaire {
     protected $id;
     protected $auteur;
-    protected $titre;
+    protected $article;
     protected $contenu;
-    protected $commentaires;
     
-    
-    
-    function __construct($titre) {
-        $this->commentaires= new ArrayCollection();
-        $this->titre=$titre;
+    function __construct() {
+        
     }
 
     function getId() {
@@ -34,8 +31,8 @@ class Article {
         return $this->auteur;
     }
 
-    function getTitre() {
-        return $this->titre;
+    function getArticle() {
+        return $this->article;
     }
 
     function getContenu() {
@@ -50,25 +47,13 @@ class Article {
         $this->auteur = $auteur;
     }
 
-    function setTitre($titre) {
-        $this->titre = $titre;
+    function setArticle($article) {
+        $this->article = $article;
     }
 
     function setContenu($contenu) {
         $this->contenu = $contenu;
     }
-
-
-    
-    function getCommentaires() {
-        return $this->commentaires;
-    }
-
-    function setCommentaires($commentaires) {
-        $this->commentaires = $commentaires;
-    }
-
-
 
 
 }

@@ -17,9 +17,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), [
 $app['connection'] = [
     'driver' => 'pdo_mysql',
     'host' => 'localhost',
-    'user' => 'p1606602',
-    'password' => '11606602',
-    'dbname' => 'p1606602',
+    'user' => 'p1605304',
+    'password' => '11605304',
+    'dbname' => 'p1605304',
     'charset' => 'utf8'
 ];
 
@@ -36,7 +36,7 @@ $app['em'] = function ($app) {
 /**
  * ROUTES
  */
-$app->get('/', 'DUT\\Controllers\\ItemsController::listAction')
+$app->get('/', 'DUT\\Controllers\\ArticleController::listAction')
     ->bind('home');
 
 //web/index.php

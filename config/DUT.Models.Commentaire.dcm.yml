@@ -5,17 +5,17 @@ DUT\Models\Commentaire:
    article:
     targetEntity: Article
     inversedBy: commentaires
-     joinColumn:
-       name: id_article
-       referencedColumnName: id
+    joinColumn:
+      name: id_article
+      referencedColumnName: id
 
   manyToOne:
    utilisateur:
     targetEntity: Utilisateur
     inversedBy: commentaires
-     joinColumn:
-       name: id_utilisateur
-       referencedColumnName: id
+    joinColumn:
+      name: id_utilisateur
+      referencedColumnName: id
 
   table: Commentaire
   
@@ -25,8 +25,7 @@ DUT\Models\Commentaire:
       generator:
         strategy: auto
 
-  fields:
-        
+  fields:        
     contenu:
       type: string
       column: contenu
