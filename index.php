@@ -39,6 +39,9 @@ $app['em'] = function ($app) {
 $app->get('/', 'DUT\\Controllers\\ArticleController::listArticles')
     ->bind('home');
 
+$app->get('/inscription', 'DUT\\Controllers\\UserController::inscription')
+    ->bind('inscription');
+
 $app->get('/article/{index}', 'DUT\\Controllers\\ArticleController::AfficheArticle');
 
 

@@ -8,6 +8,12 @@
 
 namespace DUT\Controllers;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Silex\Application;
+use DUT\Models\Article;
+
+
 /**
  * Description of UserController
  *
@@ -15,4 +21,16 @@ namespace DUT\Controllers;
  */
 class UserController {
     //put your code here
+
+      public function __construct() {
+        
+    }
+
+    public function inscription(Application $app){
+ 	$twig=$app['twig'];
+	$html=$twig->render('inscription.twig');
+
+	return new Response($html);
+    }
+
 }
