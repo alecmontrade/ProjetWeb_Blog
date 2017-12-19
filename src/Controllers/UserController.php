@@ -33,4 +33,9 @@ class UserController {
 	return new Response($html);
     }
 
+     public function add(Application $app){
+
+     	
+     }
+
 }
