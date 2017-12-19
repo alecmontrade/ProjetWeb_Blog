@@ -39,7 +39,7 @@ $app['em'] = function ($app) {
 $app->get('/', 'DUT\\Controllers\\ArticleController::listArticles')
     ->bind('home');
 
-$app->get('/article/{index}', 'DUT\\Controllers\\ItemsController::AfficheArticle');
+$app->get('/article/{index}', 'DUT\\Controllers\\ArticleController::AfficheArticle');
 
 
 //web/index.php

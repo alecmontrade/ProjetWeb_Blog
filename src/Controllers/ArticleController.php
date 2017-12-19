@@ -31,7 +31,9 @@ class ArticleController {
         $entityManager = $app['em'];
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
-        $article=$repository->find('DUT\\Models\\Article', $index);
+        $article=$repository->find($index);
+        //var_dump($article);
+        
         $html=$twig->render('Article.twig', ['article' => $article]);
         
         return new Response($html);
