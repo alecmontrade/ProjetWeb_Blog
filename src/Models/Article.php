@@ -5,7 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 namespace DUT\Models;
+
+
 /**
  * Description of Item
  *
@@ -22,7 +26,7 @@ class Article {
     
     
     function __construct($titre) {
-        $this->commentaires= new ArrayCollection();
+        $this->commentaires= new \Doctrine\Common\Collections\ArrayCollection();
         $this->titre=$titre;
     }
 

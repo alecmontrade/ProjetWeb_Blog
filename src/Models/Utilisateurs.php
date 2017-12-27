@@ -22,7 +22,7 @@ class Utilisateurs {
     
     
     function __construct() {
-        $this->commentaires= new ArrayCollection();
+        $this->commentaires= new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     function getId() {

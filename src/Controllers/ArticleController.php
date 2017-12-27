@@ -42,13 +42,19 @@ class ArticleController {
     
     
     
-    public function createAction(Application $app) {
+    public function createAction(Request $request, Application $app) {
         $entityManager = $app['em'];
         $twig=$app['twig'];
-        $repository = $entityManager->getRepository('DUT\\Models\\Article');
-        //$newrow = new Article($request->get('title'));
+        $titre=$request->get('titre', null);
+        
         $url = $app['url_generator']->generate('home');
-
+        if(!is_null($titre)){
+            $item=new Article($titre);
+            $item->setContenu($request->get('editeur'));
+            $item->setAuteur(2);
+            $entityManager->persist($item);
+            $entityManager->flush();
+        }
         
 
         $html = $twig->render('Create.twig');
@@ -56,6 +62,20 @@ class ArticleController {
 
         return new Response($html);
     }
+    
+    
+    public function searchAction($key, Application $app) {
+        $entityManager = $app['em'];
+        $twig=$app['twig'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $articles=$repository->find($key);
+        //var_dump($article);
+        
+        $html=$twig->render('Article.twig', ['articles' => $articles]);
+        
+        return new Response($html);
+    }
+    
 
     public function deleteAction($index, Application $app) {
         $entityManager = $app['em'];

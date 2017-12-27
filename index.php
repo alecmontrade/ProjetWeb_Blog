@@ -47,7 +47,8 @@ $app->get('/article/{index}', 'DUT\\Controllers\\ArticleController::AfficheArtic
 $app->get('/create', 'DUT\\Controllers\\ArticleController::createAction')
     ->bind('create');
 
-
+$app->get('/search/{key}', 'DUT\\Controllers\\ArticleController::searchAction')
+    ->bind('search');
 
 //web/index.php
 $app->get('/example', function() use ($app) {
