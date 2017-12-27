@@ -1,0 +1,85 @@
+{% extends "home.twig" %}
+{% block articles %}
+    <h1>Inscription</h1>
+    <form method="post" action="">
+							<table>
+								<tbody><tr>
+									<td>
+										<label for="pseudo">Pseudo : </label>
+									</td>
+									<td>
+										<input type="text" id="pseudo" name="pseudo" value="" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="nom">Nom : </label>
+									</td>
+									<td>
+										<input type="text" id="nom" name="nom" value="" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="prenom">Prénom : </label>
+									</td>
+									<td>
+										<input type="text" id="prenom" name="prenom" value="" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="mail">Mail : </label>
+									</td>
+									<td>
+										<input type="email" id="mail" name="mail" value="" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="mdp">Mot de passe : </label>
+									</td>
+									<td>
+										<input type="password" id="mdp" name="mdp" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="mdp2">Confirmer mot de passe : </label>
+									</td>
+									<td>
+										<input type="password" id="mdp2" name="mdp2" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="question">Choisissez une question secrète : </label>
+									</td>
+									<td>
+										<select name="question" id="question" style="width:100%">
+											<option>Quelle est votre couleur préférée ?</option>
+											<option>Quel est le nom de votre premier animal de compagnie ?</option>
+											<option>Comment s'appelle votre grand père paternel ?</option>
+											<option>Comment s'appelle votre meilleur ami d'enfance ?</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="resp">Réponse à la question secrète : </label>
+									</td>
+									<td>
+										<input type="text" id="resp" name="resp" style="width:100%"> 
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<input type="submit" value="Je m'inscris" style="width:100%" name="form_insc"></td>
+									</tr>
+								</tbody></table>
+
+							</form>
+
+
+{% endblock %}
