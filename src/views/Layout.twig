@@ -36,13 +36,14 @@
               <a class="nav-link" href="{{ app.url_generator.generate('home')  }}">Accueil
                 <span class="sr-only">(current)</span>
               </a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
+            </li>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Connexion</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link" href="{{ app.url_generator.generate('inscription')  }}">Inscription</a>
             </li>

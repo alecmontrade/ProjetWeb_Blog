@@ -50,10 +50,14 @@ $app->get('/create', 'DUT\\Controllers\\ArticleController::createAction')
 $app->get('/search/{key}', 'DUT\\Controllers\\ArticleController::searchAction')
     ->bind('search');
 
+$app->post('/add', 'DUT\\Controllers\\UserController::add')
+    ->bind('add');
+
 //web/index.php
 $app->get('/example', function() use ($app) {
 	return $app['twig']->render('Vue.twig', ['name' => 'Lucas']);
 });
+
 
 
 

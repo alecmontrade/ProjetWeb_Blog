@@ -1,4 +1,4 @@
-DUT\Models\Utilisateur:
+DUT\Models\Utilisateurs:
   type: entity
   
   oneToMany:
@@ -17,15 +17,15 @@ DUT\Models\Utilisateur:
   fields:
     mail:
       type: string
-      column: id_redacteur
+      column: mail
       nullable: false
     
     pseudo:
       type: string
-      column: titre
+      column: pseudo
       nullable: false
         
     mdp:
       type: string
-      column: contenu
+      column: mdp
       nullable: false

@@ -4,7 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/views/Layout.twig</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/views/liste.twig</file>
             <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/views/Create.twig</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/Controllers/ArticleController.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/Models/Utilisateurs.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/Models/Article.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/Controllers/UserController.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/views/Article.twig</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/index.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/Models/Commentaire.php</file>
+            <file>file:/D:/wamp64/www/ProjetWeb_Blog/src/views/Home.twig</file>
         </group>
     </open-files>
 </project-private>

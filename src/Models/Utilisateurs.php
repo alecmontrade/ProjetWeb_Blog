@@ -6,7 +6,10 @@
  * and open the template in the editor.
  */
 
+
+
 namespace DUT\Models;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Description of Utilisateurs
@@ -14,54 +17,58 @@ namespace DUT\Models;
  * @author p1606602
  */
 class Utilisateurs {
-    protected $id;
-    protected $mail;
-    protected $pseudo;
-    protected $mdp;
-    protected $commentaires;
+
+    public $id;
+    public $mail;
+    public $pseudo;
+    public $mdp;
+    public $commentaires;
     
     
-    function __construct() {
-        $this->commentaires= new \Doctrine\Common\Collections\ArrayCollection();
+    public function __construct($mail,$pseudo,$mdp) {
+        $this->commentaires= new ArrayCollection();
+        $this->mail=$mail;
+        $this->pseudo=$pseudo;
+        $this->mdp=$mdp;
     }
 
-    function getId() {
+    public function getId() {
         return $this->id;
     }
 
-    function getMail() {
+    public function getMail() {
         return $this->mail;
     }
 
-    function getPseudo() {
+    public function getPseudo() {
         return $this->pseudo;
     }
 
-    function getMdp() {
+    public function getMdp() {
         return $this->mdp;
     }
 
-    function setId($id) {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    function setMail($mail) {
+    public function setMail($mail) {
         $this->mail = $mail;
     }
 
-    function setPseudo($pseudo) {
+    public function setPseudo($pseudo) {
         $this->pseudo = $pseudo;
     }
 
-    function setMdp($mdp) {
+    public function setMdp($mdp) {
         $this->mdp = $mdp;
     }
     
-    function getCommentaires() {
+    public function getCommentaires() {
         return $this->commentaires;
     }
 
-    function setCommentaires($commentaires) {
+    public function setCommentaires($commentaires) {
         $this->commentaires = $commentaires;
     }
 

@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
 use DUT\Models\Article;
+use DUT\Models\Utilisateurs;
+
+
 
 
 /**
@@ -22,20 +25,33 @@ use DUT\Models\Article;
 class UserController {
     //put your code here
 
-      public function __construct() {
-        
-    }
 
-    public function inscription(Application $app){
+  public function inscription(Application $app){
  	$twig=$app['twig'];
 	$html=$twig->render('inscription.twig');
-        
+
 	return new Response($html);
+
     }
 
-     public function add(Application $app){
+     public function add(Request $request, Application $app){
+        
+     	$entityManager = $app['em'];
+        $pseudo = $request->get('pseudo', null);
+        $mail = $request->get('mail', null);
+        $mdp = $request->get('mdp', null);
 
-     	
+        $url = $app['url_generator']->generate('home');
+
+        if (!is_null($pseudo)  && !is_null($mail) && !is_null($mdp)) {
+       
+            $user = new Utilisateurs($mail,$pseudo,$mdp);
+            var_dump($user->getMail());
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+
+        return $app->redirect($url);
      }
 
 }
