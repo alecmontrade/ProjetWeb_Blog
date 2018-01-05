@@ -29,13 +29,14 @@
 
           <!-- Comments Form -->
           <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">Laisser un commentaire</h5>
             <div class="card-body">
-              <form>
+              <form methode="POST" action="">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea class="form-control" rows="3" name="comment"></textarea>
+                  <input type="hidden" name="id" value={{article.getId()}}>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Publier</button>
               </form>
             </div>
           </div>

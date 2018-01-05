@@ -45,7 +45,7 @@ class UserController {
 
         if (!is_null($pseudo)  && !is_null($mail) && !is_null($mdp)) {
        
-            $user = new Utilisateurs($mail,$pseudo,$mdp);
+            $user = new Utilisateurs($mail,$pseudo, sha1($mdp));
             var_dump($user->getMail());
             $entityManager->persist($user);
             $entityManager->flush();

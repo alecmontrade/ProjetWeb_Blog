@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
 use DUT\Models\Article;
+use DUT\Models\Commentaire;
+use DUT\Models\Image;
 
 
 
@@ -22,7 +24,10 @@ class ArticleController {
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $articles=$repository->findAll();
-        $html=$twig->render('liste.twig', ['articles' => $articles]);
+        $repository= $entityManager->getRepository('DUT\\Models\\Image');
+        $images=$repository->findAll();
+        
+        $html=$twig->render('liste.twig', ['articles' => $articles,'images'=>$images ]);
         
         return new Response($html);
     }
@@ -45,23 +50,69 @@ class ArticleController {
     public function createAction(Request $request, Application $app) {
         $entityManager = $app['em'];
         $twig=$app['twig'];
+        $directory='images';
         $titre=$request->get('titre', null);
+        $file=$request->files->get('image', null);
+        $filename=$request->get('nom',null);
+        $filename=$filename.'.jpg';   
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
         
-        $url = $app['url_generator']->generate('home');
-        if(!is_null($titre)){
+        
+        
+        if(!is_null($titre) && !is_null($file) && !is_null($filename)){
+            
+            $move=$file->move($directory,$filename);
+            $directory=$directory.'/'.$filename;
+            
             $item=new Article($titre);
             $item->setContenu($request->get('editeur'));
             $item->setAuteur(2);
             $entityManager->persist($item);
+            $articles=$repository->findAll();
+            $idnew=1;
+            foreach ($articles as $article){
+                $idnew=$article->getId();
+            }
+            $idnew;
+            
+            
+            $newPicture=new Image($filename,$directory,$idnew);
+            $entityManager->persist($newPicture);
             $entityManager->flush();
+            
+        }
+        $html = $twig->render('Create.twig');
+        return new Response($html);
+    }
+    
+    public function addComment(Request $request, Application $app) {
+        $entityManager = $app['em'];
+        $twig=$app['twig'];
+        $comment=$request->get('comment', null);
+        $id=$request->get('id',null);
+        /*temp*/$auteur=0;
+       
+        $url = $app['url_generator']->generate('home');
+        if(!is_null($comment)){
+            $item=new Commentaire($id,$comment);
+            $item.setAuteur($auteur);
+            
+            
+            $entityManager->persist($item);
+            $entityManager->flush();
+            return $app->redirect($url);
         }
         
 
-        $html = $twig->render('Create.twig');
+        $html = $twig->render('Article.twig');
         
 
         return new Response($html);
     }
+    
+    
+    
+    
     
     
     public function searchAction($key, Application $app) {

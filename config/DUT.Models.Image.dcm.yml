@@ -1,0 +1,26 @@
+DUT\Models\Image:
+  type: entity
+  
+  table: image
+  
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:
+    nom:
+      type: string
+      column: nom
+      nullable: false
+    
+    article:
+      type: integer
+      column: article
+      nullable: false
+        
+    chemin:
+      type: string
+      column: chemin
+      nullable: false

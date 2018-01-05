@@ -6,22 +6,23 @@
           
     
     {% block articlelist %}
-            {% for article in articles %}            
+            {% for article in articles %}            
+                
+                    
+                        <div class="card mb-4">
+                            {% for image in images %}{% if (article.getId()==image.getArticle()) %}<img class="card-img-top" src="{{image.getChemin()}}" alt="Card image cap">{%else%} {% endif %}{% endfor %} 
+                            <div class="card-body">
+                              <h2 class="card-title">{{article.getTitre()}}</h2>
+                              <p class="card-text"></p>
+                              <a href="article/{{article.getId()}}" class="btn btn-primary">Voir plus &rarr;</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                              Posted on January 1, 2017 
+                            </div>
+                        </div>     
 
-                <div class="card mb-4">
-                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-                    <div class="card-body">
-                      <h2 class="card-title">{{article.getTitre()}}</h2>
-                      <p class="card-text"></p>
-                      <a href="article/{{article.getId()}}" class="btn btn-primary">Read More &rarr;</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                      Posted on January 1, 2017 
-                    </div>
-                </div>     
-
-
-
+                    
+                
 
             {% endfor %}
 

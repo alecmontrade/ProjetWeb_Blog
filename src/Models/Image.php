@@ -6,55 +6,64 @@
  * and open the template in the editor.
  */
 
+
 namespace DUT\Models;
 
+
 /**
- * Description of Commentaire
+ * Description of Item
  *
  * @author p1606602
  */
-class Commentaire {
+class Image {
+   
     protected $id;
-    protected $auteur;
     protected $article;
-    protected $contenu;
+    protected $nom;
+    protected $chemin;
     
-    function __construct($article,$contenu) {
+    
+    
+    
+    function __construct($nom,$chemin,$article) {
+        $this->nom=$nom;
+        $this->chemin=$chemin;
         $this->article=$article;
-        $this->contenu=$contenu;
     }
 
     function getId() {
         return $this->id;
     }
 
-    function getAuteur() {
-        return $this->auteur;
-    }
-
     function getArticle() {
         return $this->article;
     }
 
-    function getContenu() {
-        return $this->contenu;
+    function getNom() {
+        return $this->nom;
+    }
+
+    function getChemin() {
+        return $this->chemin;
     }
 
     function setId($id) {
         $this->id = $id;
     }
 
-    function setAuteur($auteur) {
-        $this->auteur = $auteur;
-    }
-
     function setArticle($article) {
         $this->article = $article;
     }
 
-    function setContenu($contenu) {
-        $this->contenu = $contenu;
+    function setNom($nom) {
+        $this->nom = $nom;
     }
+
+    function setChemin($chemin) {
+        $this->chemin = $chemin;
+    }
+
+
 
 
 }

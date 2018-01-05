@@ -1,9 +1,14 @@
 {% extends "Home.twig" %}
 {% block articles %}
-    <h1>Ajouter votre article</h1>
-    <form methode="POST" action="">
+    <h2>Ajouter votre article</h2>
+    <form method="post" action="{{ app.url_generator.generate('created')  }}" enctype="multipart/form-data">
         <label>Titre </label><input type="text" name="titre" />
         <textarea cols="80" class="ckeditor" id="editeur" name="editeur" rows="10"></textarea>
+        <br/><br/>
+        <h2>ajouter une image</h2>
+        <p>titre de l'image: </p>
+        <input type='text' name='nom'><br/>
+        <input type="file" name="image"><br/>
         <input type="submit" value="valider" />
     </form>
    

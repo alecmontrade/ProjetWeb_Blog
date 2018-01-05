@@ -47,24 +47,22 @@ $app->get('/article/{index}', 'DUT\\Controllers\\ArticleController::AfficheArtic
 $app->get('/create', 'DUT\\Controllers\\ArticleController::createAction')
     ->bind('create');
 
+$app->post('/create', 'DUT\\Controllers\\ArticleController::createAction')
+    ->bind('created');
+
 $app->get('/search/{key}', 'DUT\\Controllers\\ArticleController::searchAction')
     ->bind('search');
 
 $app->post('/add', 'DUT\\Controllers\\UserController::add')
     ->bind('add');
 
-//web/index.php
-$app->get('/example', function() use ($app) {
-	return $app['twig']->render('Vue.twig', ['name' => 'Lucas']);
-});
 
 
 
 
 //$app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');
 
-$app->get('/remove/{index}', 'DUT\\Controllers\\ItemsController::deleteAction');
-$app->get('/check/{index}', 'DUT\\Controllers\\ItemsController::checkAction');
+
 
 $app['debug'] = true;
 $app->run();
