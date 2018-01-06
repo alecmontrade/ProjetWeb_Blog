@@ -1,0 +1,31 @@
+DUT\Models\Utilisateur:
+  type: entity
+  
+  oneToMany:
+    commentaires:
+      targetEntity: Commentaire
+      mappedBy: utilisateur
+
+  table: Utilisateur
+  
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:
+    mail:
+      type: string
+      column: id_redacteur
+      nullable: false
+    
+    pseudo:
+      type: string
+      column: titre
+      nullable: false
+        
+    mdp:
+      type: string
+      column: contenu
+      nullable: false

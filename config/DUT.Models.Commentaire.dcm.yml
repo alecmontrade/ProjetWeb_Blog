@@ -1,0 +1,32 @@
+DUT\Models\Commentaire:
+  type: entity
+
+  manyToOne:
+   article:
+    targetEntity: Article
+    inversedBy: commentaires
+    joinColumn:
+      name: id_article
+      referencedColumnName: id
+
+  manyToOne:
+   utilisateur:
+    targetEntity: Utilisateur
+    inversedBy: commentaires
+    joinColumn:
+      name: id_utilisateur
+      referencedColumnName: id
+
+  table: Commentaire
+  
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: auto
+
+  fields:        
+    contenu:
+      type: string
+      column: contenu
+      nullable: false
