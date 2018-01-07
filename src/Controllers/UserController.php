@@ -34,6 +34,13 @@ class UserController {
 
     }
 
+  public function connexion(Application $app){
+  $twig=$app['twig'];
+  $html=$twig->render('Connexion.twig');
+
+  return new Response($html);
+  }
+
      public function add(Request $request, Application $app){
         
      	$entityManager = $app['em'];
@@ -53,5 +60,19 @@ class UserController {
 
         return $app->redirect($url);
      }
+
+  public function con(Request $request,Application $app){
+    $entityManager = $app['em'];
+    $pseudo = $request->get('pseudo', null);
+    $mdp = $request->get('mdp', null);
+    $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+    $user=$repository->find($pseudo);
+
+    if(isset($user)){
+      if($user->getPseudo()==$pseudo && $user->getMdp()==$mdp){
+        $_SESSION['id']=$user->getId();
+      }
+    }
+  }
 
 }

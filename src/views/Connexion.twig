@@ -1,0 +1,28 @@
+{% extends "Layout.twig" %}
+{% block body %}
+<form method="post" action="{{ app.url_generator.generate('con') }}">
+							<center><table>
+								<tr>
+									<td>
+										<label for="pseudo">Pseudo : </label>
+									</td>
+									<td>
+										<input type="text" id="pseudo" name="pseudo" value="" style="width:100%"/> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="nom">Mot de passe : </label>
+									</td>
+									<td>
+										<input type="password" id="mdp" name="mdp"/> 
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<input type="submit" value="Connexion" style="width:100%" name="form_co"/></td>
+									</tr>
+								</table></center>
+							</form>
+{% endblock %}

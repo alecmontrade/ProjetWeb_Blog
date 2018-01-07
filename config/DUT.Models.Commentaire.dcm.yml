@@ -11,14 +11,13 @@ DUT\Models\Commentaire:
 
   manyToOne:
    utilisateur:
-    targetEntity: Utilisateur
+    targetEntity: Utilisateurs
     inversedBy: commentaires
     joinColumn:
       name: id_utilisateur
       referencedColumnName: id
 
-  table: Commentaire
-  
+  table: Commentaire  
   id:
     id:
       type: integer

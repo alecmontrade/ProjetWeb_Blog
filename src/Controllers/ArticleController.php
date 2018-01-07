@@ -8,7 +8,7 @@ use Silex\Application;
 use DUT\Models\Article;
 use DUT\Models\Commentaire;
 use DUT\Models\Image;
-
+use DUT\Models\Utilisateurs;
 
 
 class ArticleController {
@@ -85,22 +85,26 @@ class ArticleController {
         return new Response($html);
     }
     
-    public function addComment(Request $request, Application $app) {
+    public function commentAction(Request $request, Application $app) {
         $entityManager = $app['em'];
         $twig=$app['twig'];
         $comment=$request->get('comment', null);
         $id=$request->get('id',null);
         /*temp*/$auteur=0;
-       
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $article=$repository->find($id);
+        $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $auteur=$repository->find(1);
         $url = $app['url_generator']->generate('home');
         if(!is_null($comment)){
-            $item=new Commentaire($id,$comment);
-            $item.setAuteur($auteur);
+            
+            $item=new Commentaire($comment,$article,$auteur);
+            var_dump($item);
             
             
             $entityManager->persist($item);
             $entityManager->flush();
-            return $app->redirect($url);
+            
         }
         
 
@@ -141,22 +145,5 @@ class ArticleController {
         return $app->redirect($url);
     }
     
-    public function checkAction($index, Application $app) {
-        $entityManager = $app['em'];
-        $repository = $entityManager->getRepository('DUT\\Models\\Item');
-        $item = $entityManager->find('DUT\\Models\\Item', $index); // 
-        if($item->getChecked()==0){
-            $item->setChecked(1);
-        }
-        else {$item->setChecked(0);}
-        
-        $entityManager->persist($item); // On sauvegarde la modification
-        $entityManager->flush();
-
-
-
-        $url = $app['url_generator']->generate('home');
-
-        return $app->redirect($url);
-    }
+    
 }

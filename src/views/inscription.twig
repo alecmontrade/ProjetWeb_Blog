@@ -1,29 +1,13 @@
 {% extends "Layout.twig" %}
 {% block body %}
 <form method="post" action="{{ app.url_generator.generate('add') }}">
-							<table>
+							<center><table>
 								<tbody><tr>
 									<td>
 										<label for="pseudo">Pseudo : </label>
 									</td>
 									<td>
 										<input type="text" id="pseudo" name="pseudo" value="" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="nom">Nom : </label>
-									</td>
-									<td>
-										<input type="text" id="nom" name="nom" value="" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="prenom">Prénom : </label>
-									</td>
-									<td>
-										<input type="text" id="prenom" name="prenom" value="" style="width:100%"> 
 									</td>
 								</tr>
 								<tr>
@@ -43,20 +27,11 @@
 									</td>
 								</tr>
 								<tr>
-									<td>
-										<label for="mdp2">Confirmer mot de passe : </label>
-									</td>
-									<td>
-										<input type="password" id="mdp2" name="mdp2" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
 									<td></td>
 									<td>
 										<input type="submit" value="Je m'inscris" style="width:100%" name="form_insc"></td>
 									</tr>
-								</tbody></table>
-
+								</tbody></table></center>
 							</form>
 
 

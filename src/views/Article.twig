@@ -31,7 +31,7 @@
           <div class="card my-4">
             <h5 class="card-header">Laisser un commentaire</h5>
             <div class="card-body">
-              <form methode="POST" action="">
+              <form methode="POST" action="{{ app.url_generator.generate('addComment')  }}">
                 <div class="form-group">
                   <textarea class="form-control" rows="3" name="comment"></textarea>
                   <input type="hidden" name="id" value={{article.getId()}}>

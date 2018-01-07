@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['id']=1;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -57,8 +59,11 @@ $app->post('/add', 'DUT\\Controllers\\UserController::add')
     ->bind('add');
 
 
+$app->get('/addComment', 'DUT\\Controllers\\ArticleController::commentAction')
+    ->bind('addComment');
 
-
+$app->post('/con', 'DUT\\Controllers\\UserController::con')
+    ->bind('con');
 
 //$app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');
 

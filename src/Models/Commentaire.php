@@ -19,8 +19,9 @@ class Commentaire {
     protected $article;
     protected $contenu;
     
-    function __construct($article,$contenu) {
+    function __construct($contenu,$article,$auteur) {
         $this->article=$article;
+        $this->auteur=$auteur;
         $this->contenu=$contenu;
     }
 
