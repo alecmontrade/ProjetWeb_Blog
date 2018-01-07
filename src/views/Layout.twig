@@ -40,10 +40,10 @@
               <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
             </li>
             </li>
-            <?php if(!isset($_SESSION['id'])){
+            <?php if($_SESSION['id']==null){
             ?>
             <li class="nav-item">
-              <a class="nav-link" href="{{ app.url_generator.generate('con')  }}">Connexion</a>
+              <a class="nav-link" href="{{ app.url_generator.generate('connexion')  }}">Connexion</a>
             </li>
             
             <li class="nav-item">

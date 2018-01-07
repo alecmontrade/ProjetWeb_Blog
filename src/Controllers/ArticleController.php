@@ -22,6 +22,7 @@ class ArticleController {
     public function listArticles(Application $app) {
         $entityManager = $app['em'];
         $twig=$app['twig'];
+        var_dump($_SESSION);
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $articles=$repository->findAll();
         $repository= $entityManager->getRepository('DUT\\Models\\Image');

@@ -62,8 +62,11 @@ $app->post('/add', 'DUT\\Controllers\\UserController::add')
 $app->get('/addComment', 'DUT\\Controllers\\ArticleController::commentAction')
     ->bind('addComment');
 
-$app->post('/con', 'DUT\\Controllers\\UserController::con')
-    ->bind('con');
+$app->get('/connexion', 'DUT\\Controllers\\UserController::connexion')
+    ->bind('connexion');
+
+$app->post('/conn', 'DUT\\Controllers\\UserController::conn')
+    ->bind('conn');
 
 //$app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');
 

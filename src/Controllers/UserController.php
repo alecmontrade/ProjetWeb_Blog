@@ -61,18 +61,21 @@ class UserController {
         return $app->redirect($url);
      }
 
-  public function con(Request $request,Application $app){
-    $entityManager = $app['em'];
-    $pseudo = $request->get('pseudo', null);
-    $mdp = $request->get('mdp', null);
-    $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
-    $user=$repository->find($pseudo);
+    public function conn(Request $request,Application $app){
+      $entityManager = $app['em'];
+      $url = $app['url_generator']->generate('home');
+      $pseudo = $request->get('pseudo', null);
+      $mdp = $request->get('mdp', null);
+      $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+      $user=$repository->find($pseudo);
 
-    if(isset($user)){
-      if($user->getPseudo()==$pseudo && $user->getMdp()==$mdp){
-        $_SESSION['id']=$user->getId();
+      if(isset($user)){
+        if($user->getPseudo()==$pseudo && $user->getMdp()==$mdp){
+          $_SESSION['id']=$user->getId();
+          
+        }
       }
+      return $app->redirect($url);
     }
-  }
 
 }
