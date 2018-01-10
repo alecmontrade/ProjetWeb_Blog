@@ -65,17 +65,28 @@ class UserController {
       $entityManager = $app['em'];
       $url = $app['url_generator']->generate('home');
       $pseudo = $request->get('pseudo', null);
+      
       $mdp = $request->get('mdp', null);
       $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
-      $user=$repository->find($pseudo);
+      $user=$repository->findOneBy(array('pseudo'=>$pseudo));
+      
 
       if(isset($user)){
-        if($user->getPseudo()==$pseudo && $user->getMdp()==$mdp){
+        if($user->getPseudo()==$pseudo && $user->getMdp()== sha1($mdp)){
           $_SESSION['id']=$user->getId();
           
         }
       }
+      
       return $app->redirect($url);
+    }
+    
+    public function deconnexion(Application $app){
+        
+        $_SESSION['id']=null;
+        var_dump($_SESSION);
+        $url = $app['url_generator']->generate('home');
+        return $app->redirect($url);
     }
 
 }

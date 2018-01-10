@@ -20,15 +20,20 @@ class ArticleController {
     }
 
     public function listArticles(Application $app) {
+        
+        if(!isset($_SESSION['id'])){
+            $_SESSION['id']=null;
+        }
+        
         $entityManager = $app['em'];
         $twig=$app['twig'];
-        var_dump($_SESSION);
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $articles=$repository->findAll();
         $repository= $entityManager->getRepository('DUT\\Models\\Image');
         $images=$repository->findAll();
         
-        $html=$twig->render('liste.twig', ['articles' => $articles,'images'=>$images ]);
+        
+        $html=$twig->render('liste.twig', ['articles' => $articles,'images'=>$images, 'session'=>$_SESSION['id']]);
         
         return new Response($html);
     }
@@ -38,9 +43,10 @@ class ArticleController {
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $article=$repository->find($index);
-        //var_dump($article);
+        $repository= $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $utilisateurs=$repository->findAll();
         
-        $html=$twig->render('Article.twig', ['article' => $article]);
+        $html=$twig->render('Article.twig', ['article' => $article,'utilisateurs'=>$utilisateurs,'session'=>$_SESSION['id']]);
         
         return new Response($html);
     }
@@ -74,7 +80,7 @@ class ArticleController {
             foreach ($articles as $article){
                 $idnew=$article->getId();
             }
-            $idnew;
+            $idnew++;
             
             
             $newPicture=new Image($filename,$directory,$idnew);

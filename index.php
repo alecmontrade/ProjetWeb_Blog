@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION['id']=1;
+
+
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -68,7 +69,8 @@ $app->get('/connexion', 'DUT\\Controllers\\UserController::connexion')
 $app->post('/conn', 'DUT\\Controllers\\UserController::conn')
     ->bind('conn');
 
-//$app->post('/create', 'DUT\\Controllers\\ItemsController::createAction');
+$app->get('/deconnexion', 'DUT\\Controllers\\UserController::deconnexion')
+    ->bind('deconnexion');
 
 
 
