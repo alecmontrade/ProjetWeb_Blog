@@ -11,8 +11,8 @@ DUT\Models\Article:
   id:
     id:
       type: integer
-      generator:
-        strategy: auto
+      column: id
+      nullable: false
 
   fields:
     auteur:

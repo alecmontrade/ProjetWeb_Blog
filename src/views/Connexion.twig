@@ -36,10 +36,7 @@
               <a class="nav-link" href="{{ app.url_generator.generate('home')  }}">Accueil
                 <span class="sr-only">(current)</span>
               </a>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
-            </li>
-            </li>
+            
 
                
 
@@ -66,7 +63,7 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Connection</h1>
+          <center><h1 class="my-4">Connection</h1></center>
 
           <!-- connect -->
     
@@ -95,7 +92,17 @@
 									</tr>
 								</table></center>
 							</form>
-    
+        {% if erreur is defined %}
+
+            <center><p style="color: red">Le mot de passe ou le pseudo est incorrect</p></center>
+       
+        {% endif %} 
+       
+        {% if erreur1 is defined %}
+
+            <center><p style="color: red">Tout les champs n'ont pas étés renseignés</p></center>
+       
+        {% endif %}                                                
     
     
          <!-- fin connect -->
@@ -162,7 +169,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; LaTeam 2018</p>
       </div>
       <!-- /.container -->
     </footer>

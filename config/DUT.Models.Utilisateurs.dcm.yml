@@ -29,3 +29,7 @@ DUT\Models\Utilisateurs:
       type: string
       column: mdp
       nullable: false
+    admin:
+      type: integer
+      column: admin
+      nullable: false

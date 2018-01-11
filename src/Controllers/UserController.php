@@ -41,49 +41,74 @@ class UserController {
   return new Response($html);
   }
 
-     public function add(Request $request, Application $app){
+    public function add(Request $request, Application $app){
         
      	$entityManager = $app['em'];
+        $twig = $app['twig'];
+        $erreur="Vous n'avez pas rempli les champs";
+        $erreur1="Le pseudo existe dÃ©jÃ ";
+        $erreur2="Les mots de passe ne correspondent pas";
         $pseudo = $request->get('pseudo', null);
         $mail = $request->get('mail', null);
         $mdp = $request->get('mdp', null);
-
+        $mdp1 = $request->get('mdp1', null);
+        $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $userExists=$repository->findOneBy(array('pseudo'=>$pseudo));
         $url = $app['url_generator']->generate('home');
-
-        if (!is_null($pseudo)  && !is_null($mail) && !is_null($mdp)) {
-       
+        if(!is_null($userExists)){
+                      $html1=$twig->render('inscription.twig', ['erreur1' => $erreur1]);
+                  return new Response($html1);
+                    }
+        elseif (empty($pseudo)  || empty($mail) || empty($mdp) || empty($mdp1)) {
+           $html=$twig->render('inscription.twig', ['erreur' => $erreur]);
+          return new Response($html);
+        }
+        elseif($mdp1!=$mdp){
+              $html2=$twig->render('inscription.twig', ['erreur2' => $erreur2]);
+          return new Response($html2);
+        }else{
+           
             $user = new Utilisateurs($mail,$pseudo, sha1($mdp));
-            var_dump($user->getMail());
             $entityManager->persist($user);
             $entityManager->flush();
-        }
-
-        return $app->redirect($url);
+            return $app->redirect($url);
+      }
      }
+
 
     public function conn(Request $request,Application $app){
       $entityManager = $app['em'];
+      $twig = $app['twig'];
+      $erreur="Le Mot de passe ou le pseudo est incorrect !";
+      $erreur1="Vous n'avez pas rempli tout les champs";
       $url = $app['url_generator']->generate('home');
       $pseudo = $request->get('pseudo', null);
-      
       $mdp = $request->get('mdp', null);
       $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
-      $user=$repository->findOneBy(array('pseudo'=>$pseudo));
-      
 
+      if(empty($pseudo) || empty($mdp)){
+          $html1=$twig->render('Connexion.twig', ['erreur1'=>$erreur1]);
+          return new Response($html1);
+          }
+      
+      $user=$repository->findOneBy(array('pseudo'=>$pseudo));
       if(isset($user)){
         if($user->getPseudo()==$pseudo && $user->getMdp()== sha1($mdp)){
           $_SESSION['id']=$user->getId();
-          
+        }
+        else{
+          $html=$twig->render('Connexion.twig', ['erreur' => $erreur]);
+          return new Response($html);
         }
       }
-      
+    
       return $app->redirect($url);
     }
+
     
     public function deconnexion(Application $app){
         
-        $_SESSION['id']=null;
+        $_SESSION['id']=0;
         var_dump($_SESSION);
         $url = $app['url_generator']->generate('home');
         return $app->redirect($url);

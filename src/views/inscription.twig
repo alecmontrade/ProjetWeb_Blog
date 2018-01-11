@@ -66,44 +66,71 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-          <h1 class="my-4">Inscription</h1>
+          <center><h1 class="my-4">Inscription</h1></center>
 
           <!-- inscription -->
     
             <form method="post" action="{{ app.url_generator.generate('add') }}">
-							<center><table>
-								<tbody><tr>
-									<td>
-										<label for="pseudo">Pseudo : </label>
-									</td>
-									<td>
-										<input type="text" id="pseudo" name="pseudo" value="" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="mail">Mail : </label>
-									</td>
-									<td>
-										<input type="email" id="mail" name="mail" value="" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="mdp">Mot de passe : </label>
-									</td>
-									<td>
-										<input type="password" id="mdp" name="mdp" style="width:100%"> 
-									</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>
-										<input type="submit" value="Je m'inscris" style="width:100%" name="form_insc"></td>
-									</tr>
-								</tbody></table></center>
-							</form>
+		<center><table>
+		<tbody><tr>
+			<td>
+                        	<label for="pseudo">Pseudo : </label>
+			</td>
+			<td>
+				<input type="text" id="pseudo" name="pseudo" value="" style="width:100%"> 
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label for="mail">Mail : </label>
+			</td>
+			<td>
+				<input type="email" id="mail" name="mail" value="" style="width:100%"> 
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<label for="mdp">Mot de passe : </label>
+			</td>
+			<td>
+				<input type="password" id="mdp" name="mdp" style="width:100%"> 
+			</td>
+			</tr>
+                        <tr>
+                        <td>
+                                <label for="mdp">Confirmer votre mot de passe : </label>
+                        </td>
+                        <td>
+                                <input type="password" id="mdp1" name="mdp1" style="width:100%"> 
+                            </td>
+                        </tr>
+
+			<tr>
+			
+			<td>
+				<input type="submit" value="Je m'inscris" style="width:100%" name="form_insc">
+                            </td>
+			</tr>
+                        </tbody></table></center>
+			</form>
     
+        {% if erreur is defined %}
+
+            <center><p style="color: red">Vous n'avez pas rempli tous les champs</p></center>
+       
+        {% endif %} 
+       
+        {% if erreur1 is defined %}
+
+            <center><p style="color: red">Le pseudo existe déjà</p> </center>
+       
+        {% endif %} 
+        {% if erreur2 is defined %}
+
+            <center><p style="color: red">Les mots de passe ne correspondent pas</p></center>
+       
+        {% endif %} 
+
     
     
          <!-- fin inscription -->
@@ -170,7 +197,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; LaTeam 2018</p>
       </div>
       <!-- /.container -->
     </footer>

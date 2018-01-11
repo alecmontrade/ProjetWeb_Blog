@@ -22,6 +22,9 @@
   </head>
 
   <body>
+      
+      
+      
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -36,11 +39,16 @@
               <a class="nav-link" href="{{ app.url_generator.generate('home')  }}">Accueil
                 <span class="sr-only">(current)</span>
               </a>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
+                
+            {%if utilisateur!=null%}
+                {%if utilisateur.getAdmin()==1%}         
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
+                </li>
+                {%endif%}
+            {%endif%}
             </li>
-            </li>
-            {% if session==null %}
+            {% if session==0 %}
                 <li class="nav-item">
                   <a class="nav-link" href="{{ app.url_generator.generate('connexion')  }}">Connexion</a>
                 </li>
@@ -165,7 +173,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; LaTeam 2018</p>
       </div>
       <!-- /.container -->
     </footer>

@@ -22,7 +22,7 @@ class ArticleController {
     public function listArticles(Application $app) {
         
         if(!isset($_SESSION['id'])){
-            $_SESSION['id']=null;
+            $_SESSION['id']=0;
         }
         
         $entityManager = $app['em'];
@@ -31,9 +31,11 @@ class ArticleController {
         $articles=$repository->findAll();
         $repository= $entityManager->getRepository('DUT\\Models\\Image');
         $images=$repository->findAll();
+        $repository= $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $utilisateur=$repository->find($_SESSION['id']);
         
         
-        $html=$twig->render('liste.twig', ['articles' => $articles,'images'=>$images, 'session'=>$_SESSION['id']]);
+        $html=$twig->render('liste.twig', ['articles' => $articles,'images'=>$images, 'utilisateur'=>$utilisateur,'session'=>$_SESSION['id']]);
         
         return new Response($html);
     }
@@ -45,8 +47,12 @@ class ArticleController {
         $article=$repository->find($index);
         $repository= $entityManager->getRepository('DUT\\Models\\Utilisateurs');
         $utilisateurs=$repository->findAll();
+        $utilisateur=$repository->find($_SESSION['id']);
+        $repository= $entityManager->getRepository('DUT\\Models\\Image');
+        $image=$repository->findOneBy(array('article'=>$index));
+        var_dump($image);
         
-        $html=$twig->render('Article.twig', ['article' => $article,'utilisateurs'=>$utilisateurs,'session'=>$_SESSION['id']]);
+        $html=$twig->render('Article.twig', ['article' => $article,'image' => $image,'utilisateurs'=>$utilisateurs,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id']]);
         
         return new Response($html);
     }
@@ -63,7 +69,12 @@ class ArticleController {
         $filename=$request->get('nom',null);
         $filename=$filename.'.jpg';   
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
-        
+        $articles=$repository->findAll();
+        $idnew=1;
+            foreach ($articles as $article){
+                $idnew=$article->getId();
+            }
+            $idnew++;
         
         
         if(!is_null($titre) && !is_null($file) && !is_null($filename)){
@@ -72,15 +83,12 @@ class ArticleController {
             $directory=$directory.'/'.$filename;
             
             $item=new Article($titre);
+            $item->setId($idnew);
             $item->setContenu($request->get('editeur'));
             $item->setAuteur(2);
             $entityManager->persist($item);
-            $articles=$repository->findAll();
-            $idnew=1;
-            foreach ($articles as $article){
-                $idnew=$article->getId();
-            }
-            $idnew++;
+            
+            
             
             
             $newPicture=new Image($filename,$directory,$idnew);

@@ -18,11 +18,12 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Utilisateurs {
 
-    public $id;
-    public $mail;
-    public $pseudo;
-    public $mdp;
-    public $commentaires;
+    protected $id;
+    protected $mail;
+    protected $pseudo;
+    protected $mdp;
+    protected $commentaires;
+    protected $admin;
     
     
     public function __construct($mail,$pseudo,$mdp) {
@@ -70,6 +71,14 @@ class Utilisateurs {
 
     public function setCommentaires($commentaires) {
         $this->commentaires = $commentaires;
+    }
+
+    function getAdmin() {
+        return $this->admin;
+    }
+
+    function setAdmin($admin) {
+        $this->admin = $admin;
     }
 
 
