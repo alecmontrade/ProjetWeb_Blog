@@ -22,12 +22,12 @@ class Utilisateurs {
     protected $mail;
     protected $pseudo;
     protected $mdp;
-    protected $commentaires;
+    
     protected $admin;
     
     
     public function __construct($mail,$pseudo,$mdp) {
-        $this->commentaires= new ArrayCollection();
+        
         $this->mail=$mail;
         $this->pseudo=$pseudo;
         $this->mdp=$mdp;

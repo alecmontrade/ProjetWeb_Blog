@@ -21,12 +21,12 @@ class Article {
     protected $auteur;
     protected $titre;
     protected $contenu;
-    protected $commentaires;
+    
     
     
     
     function __construct($titre) {
-        $this->commentaires= new \Doctrine\Common\Collections\ArrayCollection();
+        
         $this->titre=$titre;
     }
 

@@ -15,13 +15,13 @@ namespace DUT\Models;
  */
 class Commentaire {
     protected $id;
-    protected $auteur;
-    protected $article;
+    protected $id_utilisateur;
+    protected $id_article;
     protected $contenu;
     
     function __construct($contenu,$article,$auteur) {
-        $this->article=$article;
-        $this->auteur=$auteur;
+        $this->id_article=$article;
+        $this->id_utilisateur=$auteur;
         $this->contenu=$contenu;
     }
 
@@ -29,12 +29,12 @@ class Commentaire {
         return $this->id;
     }
 
-    function getAuteur() {
-        return $this->auteur;
+    function getIdAuteur() {
+        return $this->id_utilisateur;
     }
 
-    function getArticle() {
-        return $this->article;
+    function getIdArticle() {
+        return $this->id_article;
     }
 
     function getContenu() {

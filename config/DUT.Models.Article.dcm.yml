@@ -1,11 +1,7 @@
 DUT\Models\Article:
   type: entity
   
-  oneToMany:
-    commentaires:
-      targetEntity: Commentaire
-      mappedBy: article
-
+ 
   table: Article
   
   id:

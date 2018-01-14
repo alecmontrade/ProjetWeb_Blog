@@ -50,9 +50,11 @@ class ArticleController {
         $utilisateur=$repository->find($_SESSION['id']);
         $repository= $entityManager->getRepository('DUT\\Models\\Image');
         $image=$repository->findOneBy(array('article'=>$index));
+        $repository= $entityManager->getRepository('DUT\\Models\\Commentaire');
+        $commenatires=$repository->findAll();
         var_dump($image);
         
-        $html=$twig->render('Article.twig', ['article' => $article,'image' => $image,'utilisateurs'=>$utilisateurs,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id']]);
+        $html=$twig->render('Article.twig', ['article' => $article,'image' => $image,'utilisateurs'=>$utilisateurs,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id'],'commentaires'=>$commenatires]);
         
         return new Response($html);
     }
@@ -105,15 +107,15 @@ class ArticleController {
         $twig=$app['twig'];
         $comment=$request->get('comment', null);
         $id=$request->get('id',null);
-        /*temp*/$auteur=0;
+        
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $article=$repository->find($id);
         $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
-        $auteur=$repository->find(1);
+        $auteur=$repository->find($_SESSION['id']);
         $url = $app['url_generator']->generate('home');
-        if(!is_null($comment)){
+        if(!is_null($comment) && !is_null($article) && !is_null($auteur)){
             
-            $item=new Commentaire($comment,$article,$auteur);
+            $item=new Commentaire($comment,$article->getId(),$auteur->getId());
             var_dump($item);
             
             
@@ -121,9 +123,17 @@ class ArticleController {
             $entityManager->flush();
             
         }
-        
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $article=$repository->find($id);
+        $repository= $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $utilisateurs=$repository->findAll();
+        $utilisateur=$repository->find($_SESSION['id']);
+        $repository= $entityManager->getRepository('DUT\\Models\\Image');
+        $image=$repository->findOneBy(array('article'=>$id));
+        $repository= $entityManager->getRepository('DUT\\Models\\Commentaire');
+        $commenatires=$repository->findAll();
 
-        $html = $twig->render('Article.twig');
+        $html = $twig->render('Article.twig', ['article' => $article,'image' => $image,'utilisateurs'=>$utilisateurs,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id'],'commentaires'=>$commenatires]);
         
 
         return new Response($html);

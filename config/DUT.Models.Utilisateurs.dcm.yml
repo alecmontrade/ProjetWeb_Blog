@@ -1,10 +1,7 @@
 DUT\Models\Utilisateurs:
   type: entity
   
-  oneToMany:
-    commentaires:
-      targetEntity: Commentaire
-      mappedBy: utilisateur
+  
 
   table: Utilisateur
   
