@@ -74,6 +74,10 @@ $app->get('/deconnexion', 'DUT\\Controllers\\UserController::deconnexion')
 
 
 
+$app->get('/delete/{index}', 'DUT\\Controllers\\ArticleController::deleteArticle');
+
+$app->get('/deleteComment/{index}', 'DUT\\Controllers\\ArticleController::deleteComment');
+
 $app['debug'] = true;
 $app->run();
 

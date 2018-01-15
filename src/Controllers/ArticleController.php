@@ -52,7 +52,7 @@ class ArticleController {
         $image=$repository->findOneBy(array('article'=>$index));
         $repository= $entityManager->getRepository('DUT\\Models\\Commentaire');
         $commenatires=$repository->findAll();
-        var_dump($image);
+        
         
         $html=$twig->render('Article.twig', ['article' => $article,'image' => $image,'utilisateurs'=>$utilisateurs,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id'],'commentaires'=>$commenatires]);
         
@@ -97,8 +97,13 @@ class ArticleController {
             $entityManager->persist($newPicture);
             $entityManager->flush();
             
+            $message = "votre article a bien été crée!  ";
+            
         }
-        $html = $twig->render('Create.twig');
+        else{
+            $message="";
+        }
+        $html = $twig->render('Create.twig',['message' => $message]);
         return new Response($html);
     }
     
@@ -116,7 +121,7 @@ class ArticleController {
         if(!is_null($comment) && !is_null($article) && !is_null($auteur)){
             
             $item=new Commentaire($comment,$article->getId(),$auteur->getId());
-            var_dump($item);
+            
             
             
             $entityManager->persist($item);
@@ -149,7 +154,7 @@ class ArticleController {
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
         $articles=$repository->find($key);
-        //var_dump($article);
+        
         
         $html=$twig->render('Article.twig', ['articles' => $articles]);
         
@@ -157,11 +162,25 @@ class ArticleController {
     }
     
 
-    public function deleteAction($index, Application $app) {
+    public function deleteArticle($index, Application $app) {
         $entityManager = $app['em'];
-        $repository = $entityManager->getRepository('DUT\\Models\\Item');
-        $titleToRemove = $entityManager->find('DUT\\Models\\Item', $index);
-        $entityManager->remove($titleToRemove);
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $articleToRemove = $entityManager->find('DUT\\Models\\Article', $index);
+        $entityManager->remove($articleToRemove);
+        $entityManager->flush();
+
+
+        $url = $app['url_generator']->generate('home');
+
+        return $app->redirect($url);
+    }
+    
+    
+    public function deleteComment($index, Application $app) {
+        $entityManager = $app['em'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Commentaire');
+        $commentToRemove = $entityManager->find('DUT\\Models\\Commentaire', $index);
+        $entityManager->remove($commentToRemove);
         $entityManager->flush();
 
 

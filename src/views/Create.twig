@@ -55,7 +55,9 @@
     <!-- home -->
     <!-- Page Content -->
     <div class="container">
-
+        {%if message!=""%}
+        <p style="color: green">{{message}}<a href="{{ app.url_generator.generate('home')  }}">  retourner au menu</a></p>
+        {%endif%}
       <div class="row">
 
         <!-- Blog Entries Column -->

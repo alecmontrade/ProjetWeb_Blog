@@ -109,7 +109,7 @@ class UserController {
     public function deconnexion(Application $app){
         
         $_SESSION['id']=0;
-        var_dump($_SESSION);
+        
         $url = $app['url_generator']->generate('home');
         return $app->redirect($url);
     }

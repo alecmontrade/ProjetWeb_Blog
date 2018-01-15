@@ -91,7 +91,8 @@
 
           <!-- Date/Time -->
           <p>Posted on January 1, 2017 at 12:00 PM</p>
-          <img class="card-img-top" src="{{image.getChemin()}}" alt="Card image cap">
+         
+          <img class="card-img-top" src="__DIR__.'/../../{{image.getChemin()}}" alt="Card image cap">
           
           {{article.getContenu()|raw}}
           
@@ -115,17 +116,22 @@
               {%if commentaire.getIdArticle()==article.getId()%}
                     <!-- Single Comment -->
                     <div class="media mb-4">
-                      <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                      <img class="d-flex mr-3 rounded-circle" src="__DIR__./../../images/avatar.jpg" alt="">
+                      
                       <div class="media-body">
-                        <h5 class="mt-0">{%for utilisateur in utilisateurs%}{%if utilisateur.getId()==commentaire.getIdAuteur()%}{{utilisateur.getPseudo()}}{%endif%}{%endfor%}</h5>
+                        <h5 class="mt-0">{%for utilisateur in utilisateurs%}{%if utilisateur.getId()==commentaire.getIdAuteur()%}{{utilisateur.getPseudo()}}{%endif%}{%endfor%}{%if utilisateur!=null%} {%if utilisateur.getAdmin()==1%} <a href="__DIR__./../../deleteComment/{{commentaire.getId()}}"><img class="img-fluid" src="__DIR__./../../images/croix.png" alt="supprimer"></a>{%endif%}{%endif%}</h5>
+                        
                         {{commentaire.getContenu()}}
+                        
                       </div>
                     </div>
               {%endif%}
           {%endfor%}
-
-          
-
+          {%if utilisateur!=null%}
+                {%if utilisateur.getAdmin()==1%}   
+           <a href="__DIR__./../../delete/{{article.getId()}}" class="btn btn-danger">Supprimer cet article&rarr;</a>
+                {%endif%}
+          {%endif%}
         </div>
 
        
