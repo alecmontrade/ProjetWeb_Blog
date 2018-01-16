@@ -68,7 +68,7 @@ class UserController {
           return new Response($html2);
         }else{
            
-            $user = new Utilisateurs($mail,$pseudo, sha1($mdp));
+            $user = new Utilisateurs($mail,$pseudo, sha1($mdp),0);
             $entityManager->persist($user);
             $entityManager->flush();
             return $app->redirect($url);

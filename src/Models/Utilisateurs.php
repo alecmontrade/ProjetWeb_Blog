@@ -26,11 +26,12 @@ class Utilisateurs {
     protected $admin;
     
     
-    public function __construct($mail,$pseudo,$mdp) {
+    public function __construct($mail,$pseudo,$mdp,$admin) {
         
         $this->mail=$mail;
         $this->pseudo=$pseudo;
         $this->mdp=$mdp;
+        $this->admin=$admin;
     }
 
     public function getId() {

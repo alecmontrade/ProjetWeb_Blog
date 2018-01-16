@@ -28,7 +28,7 @@ class ArticleController {
         $entityManager = $app['em'];
         $twig=$app['twig'];
         $repository = $entityManager->getRepository('DUT\\Models\\Article');
-        $articles=$repository->findAll();
+        $articles=$repository->findBy(array(),array('id'=>'DESC'));
         $repository= $entityManager->getRepository('DUT\\Models\\Image');
         $images=$repository->findAll();
         $repository= $entityManager->getRepository('DUT\\Models\\Utilisateurs');
@@ -168,7 +168,18 @@ class ArticleController {
         $articleToRemove = $entityManager->find('DUT\\Models\\Article', $index);
         $entityManager->remove($articleToRemove);
         $entityManager->flush();
+        $repository = $entityManager->getRepository('DUT\\Models\Image');
+        $imageToRemove = $repository->findOneBy(array('article'=>$index));
+        $entityManager->remove($imageToRemove);
+        $entityManager->flush();
 
+        $repository = $entityManager->getRepository('DUT\\Models\Commentaire');
+        $commentsToRemove = $repository->findBy(array('id_article'=>$index));
+        foreach($commentsToRemove as $comment){
+            $commenttoremove=$repository->findOneBy(array('id_article'=>$index));
+            $entityManager->remove($commenttoremove);
+            $entityManager->flush();
+        }
 
         $url = $app['url_generator']->generate('home');
 
@@ -189,5 +200,50 @@ class ArticleController {
         return $app->redirect($url);
     }
     
+    public function modifier($index, Application $app) {
+        $entityManager = $app['em'];
+        $twig=$app['twig'];
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $article= $repository->find($index);
+        $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+        $utilisateur= $repository->find($_SESSION['id']);
+        $message="";
+        
+
+        $html = $twig->render('modif.twig', ['article' => $article,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id'],'message'=>$message]);
+        
+
+        return new Response($html);
+    }
     
+    public function modif(Request $request, Application $app) {
+        $entityManager = $app['em'];
+        $twig=$app['twig'];
+        $newtitle=$request->get("titre",null);
+        $newcontenu=$request->get("editeur",null);
+        $id=$request->get("id",null);
+        
+        $repository = $entityManager->getRepository('DUT\\Models\\Article');
+        $articletochange= $repository->find($id);
+        var_dump($newcontenu);
+        if(!is_null($newtitle) && !is_null($newcontenu) && !is_null($articletochange)){
+            $articletochange->setTitre($newtitle);
+            $articletochange->setContenu($newcontenu);
+            $entityManager->persist($articletochange);
+            $entityManager->flush();
+            $url = $app['url_generator']->generate('home');
+            return $app->redirect($url);
+        }
+        else{
+            $message="erreur dans la modification de votre article";
+            $repository = $entityManager->getRepository('DUT\\Models\\Article');
+            $article= $repository->find($index);
+            $repository = $entityManager->getRepository('DUT\\Models\\Utilisateurs');
+            $utilisateur= $repository->find($_SESSION['id']);
+            $html = $twig->render('modif.twig', ['article' => $article,'utilisateur'=>$utilisateur,'session'=>$_SESSION['id'],'message'=>$message]);
+        }
+        
+        
+       
+    }
 }

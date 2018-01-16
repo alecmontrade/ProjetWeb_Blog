@@ -21,6 +21,7 @@ class Article {
     protected $auteur;
     protected $titre;
     protected $contenu;
+    protected $date;
     
     
     
@@ -28,6 +29,7 @@ class Article {
     function __construct($titre) {
         
         $this->titre=$titre;
+        $this->date= date('d-M-Y H:i');
     }
 
     function getId() {
@@ -72,6 +74,10 @@ class Article {
         $this->commentaires = $commentaires;
     }
 
+
+    function getDate() {
+        return $this->date;
+    }
 
 
 

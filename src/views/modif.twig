@@ -22,9 +22,6 @@
   </head>
 
   <body>
-      
-      
-      
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -39,34 +36,17 @@
               <a class="nav-link" href="{{ app.url_generator.generate('home')  }}">Accueil
                 <span class="sr-only">(current)</span>
               </a>
-                
-            {%if utilisateur!=null%}
-                {%if utilisateur.getAdmin()==1%}         
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
-                </li>
-                {%endif%}
-            {%endif%}
+            {%if utilisateur.getAdmin()==1%}
             </li>
-            {% if session==0 %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ app.url_generator.generate('connexion')  }}">Connexion</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ app.url_generator.generate('deconnexion')  }}">Déconnexion</a>
+            </li>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ app.url_generator.generate('inscription')  }}">Inscription</a>
-                </li>
-            {%else%}
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Mon Compte</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ app.url_generator.generate('deconnexion')  }}">Déconnexion</a>
-                </li>
+                
 
                 
                 
-            {%endif%}
+
            
           </ul>
         </div>
@@ -75,38 +55,26 @@
     <!-- home -->
     <!-- Page Content -->
     <div class="container">
-
+        {%if message!=""%}
+        <p style="color: green">{{message}}<a href="{{ app.url_generator.generate('home')  }}">  retourner au menu</a></p>
+        {%endif%}
       <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-10">
+        <div class="col-md-12">
 
-          <center><h1 class="my-4">Bienvenue 
-            Sur LE blog sportif
-          </h1></center>
+          <h1 class="my-4">Nouvel article</h1>
 
           <!-- articles -->
     
-            {% for article in articles %}            
-                        
-                    
-                        <div class="card mb-4">
-                            {% for image in images %}{% if (article.getId()==image.getArticle()) %}<img class="card-img-top" src="{{image.getChemin()}}" alt="Card image cap">{%else%} {% endif %}{% endfor %} 
-                            <div class="card-body">
-                              <h2 class="card-title">{{article.getTitre()}}</h2>
-                              <p class="card-text"></p>
-                              
-                              <a href="article/{{article.getId()}}" class="btn btn-primary">Voir plus &rarr;</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                              Posted on {{article.getDate()}} 
-                            </div>
-                        </div>     
-
-                    
-                
-
-            {% endfor %}
+            <h2>Modifier un article</h2>
+            <form method="post" action="{{ app.url_generator.generate('modif')  }}" enctype="multipart/form-data">
+                <label>Titre </label><input type="text" name="titre" value="{{article.getTitre()}}"/>
+                <textarea cols="80" class="ckeditor" id="editeur" name="editeur"  rows="10">{{article.getContenu()}}</textarea>
+                <br/><br/>
+                <input type="hidden" name="id" value="{{article.getId}}"/>
+                <input type="submit" value="modifier" />
+            </form>
     
     
     
@@ -115,13 +83,7 @@
 
         </div>
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-          
-
-          
-
+      
           
 
         </div>
@@ -132,7 +94,7 @@
     </div>
     
     <!-- fin home -->
-    
+    {%endif%}
     
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -158,3 +120,5 @@
     
     
 </body>
+
+

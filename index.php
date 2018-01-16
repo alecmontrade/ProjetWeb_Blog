@@ -33,7 +33,7 @@ $app['em'] = function ($app) {
 };
 
 
-
+date_default_timezone_set ( "Europe/Paris" );
 
 
 /**
@@ -72,6 +72,11 @@ $app->post('/conn', 'DUT\\Controllers\\UserController::conn')
 $app->get('/deconnexion', 'DUT\\Controllers\\UserController::deconnexion')
     ->bind('deconnexion');
 
+$app->get('/modifier/{index}', 'DUT\\Controllers\\ArticleController::modifier');
+    
+
+$app->post('/modif', 'DUT\\Controllers\\ArticleController::modif')
+    ->bind('modif');
 
 
 $app->get('/delete/{index}', 'DUT\\Controllers\\ArticleController::deleteArticle');

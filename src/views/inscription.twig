@@ -36,9 +36,7 @@
               <a class="nav-link" href="{{ app.url_generator.generate('home')  }}">Accueil
                 <span class="sr-only">(current)</span>
               </a>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ app.url_generator.generate('create')  }}">Creer un article</a>
-            </li>
+            
             </li>
 
                
@@ -64,7 +62,7 @@
       <div class="row">
 
         <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <div class="col-md-12">
 
           <center><h1 class="my-4">Inscription</h1></center>
 
@@ -106,8 +104,9 @@
                         </tr>
 
 			<tr>
+                            <td></td>
 			
-			<td>
+                            <td>
 				<input type="submit" value="Je m'inscris" style="width:100%" name="form_insc">
                             </td>
 			</tr>
@@ -138,53 +137,7 @@
 
         </div>
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-          
-
-          <!-- Categories Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Categories</h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="search/rugby">Rugby</a>
-                    </li>
-                    <li>
-                      <a href="serach/tennis">Tennis</a>
-                    </li>
-                    <li>
-                      <a href="serach/foot">Foot</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul class="list-unstyled mb-0">
-                    <li>
-                      <a href="serach/golf">Golf</a>
-                    </li>
-                    <li>
-                      <a href="serach/basket">Basket</a>
-                    </li>
-                    
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-            </div>
-          </div>
-
-        </div>
+        
 
       </div>
       <!-- /.row -->

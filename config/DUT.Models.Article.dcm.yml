@@ -25,3 +25,8 @@ DUT\Models\Article:
       type: string
       column: contenu
       nullable: false
+      
+    date:
+      type: string
+      column: date
+      nullable: false

@@ -76,7 +76,7 @@
       <div class="row">
 
         <!-- Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
 
           <!-- Title -->
           <h1 class="mt-4">{{article.getTitre()}}</h1>
@@ -128,8 +128,9 @@
               {%endif%}
           {%endfor%}
           {%if utilisateur!=null%}
-                {%if utilisateur.getAdmin()==1%}   
-           <a href="__DIR__./../../delete/{{article.getId()}}" class="btn btn-danger">Supprimer cet article&rarr;</a>
+                {%if utilisateur.getAdmin()==1%}
+                    <a href="__DIR__./../../modifier/{{article.getId()}}" class="btn btn-primary">Modifier cet article &rarr;</a>
+                    <a href="__DIR__./../../delete/{{article.getId()}}" class="btn btn-danger">Supprimer cet article&rarr;</a>
                 {%endif%}
           {%endif%}
         </div>
